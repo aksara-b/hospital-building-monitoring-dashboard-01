@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F1F5F9;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8FAFC;
+  --color-primary: #0F172A;
+  --color-secondary: #334155;
+  --color-success: #059669;
+  --color-warning: #B45309;
+  --color-danger: #991B1B;
+  --color-text-main: #0F172A;
+  --color-text-muted: #64748B;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'Manrope', monospace;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Sidebar Island ── */
+.sidebar-island {
+  width: 64px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 12px 0 12px 12px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+}
+
+.sidebar-island:hover {
+  width: 240px;
+}
+
+/* Labels hidden by default, revealed on sidebar hover */
+.sidebar-label {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.15s ease 0s, max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.sidebar-island:hover .sidebar-label {
+  opacity: 1;
+  max-width: 200px;
+  transition: opacity 0.2s ease 0.15s, max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar nav scrollbar - hidden by default, appears on hover */
+.sidebar-nav-scroll {
+  scrollbar-width: none;
+}
+
+.sidebar-nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-island:hover .sidebar-nav-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+
+.sidebar-island:hover .sidebar-nav-scroll::-webkit-scrollbar {
+  display: block;
+  width: 3px;
+}
+
+.sidebar-island:hover .sidebar-nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-island:hover .sidebar-nav-scroll::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+/* ── Global Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ── Unify all card/panel backgrounds with a professional dark color ── */
+.bg-slate-900 {
+  background-color: #0F172A !important; /* Deep Navy */
+}
+
+.bg-slate-800 {
+  background-color: #1E293B !important; /* Slate 800 */
+}
+
+.bg-slate-700 {
+  background-color: #334155 !important; /* Slate 700 */
+}
+
+/* Opacity variants */
+.bg-slate-900\/20 {
+  background-color: rgba(15, 23, 42, 0.20) !important;
+}
+
+.bg-slate-900\/50 {
+  background-color: rgba(15, 23, 42, 0.50) !important;
+}
+
+.bg-slate-900\/80 {
+  background-color: rgba(15, 23, 42, 0.80) !important;
+}
+
+.bg-slate-800\/30 {
+  background-color: rgba(30, 41, 59, 0.30) !important;
+}
+
+.bg-slate-800\/50 {
+  background-color: rgba(30, 41, 59, 0.50) !important;
+}
+
+.bg-slate-800\/80 {
+  background-color: rgba(30, 41, 59, 0.80) !important;
+}
+
+/* Border overrides */
+.border-slate-800 {
+  border-color: #1E293B !important;
+}
+
+.border-slate-700 {
+  border-color: #334155 !important;
+}

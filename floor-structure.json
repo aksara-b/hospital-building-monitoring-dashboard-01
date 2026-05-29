@@ -1,0 +1,15 @@
+{
+    "floors": [
+        {
+            "floor_id": "L1",
+            "name": "Level 1",
+            "type": "Clinical",
+            "beds": 8,
+            "rooms": 8,
+            "occupancy_pct": 72,
+            "temp_avg": 24.1,
+            "power_load_pct": 84,
+            "alarm_count": 1
+        }
+    ]
+}

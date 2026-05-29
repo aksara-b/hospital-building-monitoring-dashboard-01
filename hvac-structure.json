@@ -1,0 +1,17 @@
+{
+    "systems": {
+        "hvac": {
+            "plant": {
+                "chillers": [],
+                "pumps": [],
+                "cooling_towers": []
+            },
+            "distribution": {
+                "ahu": [],
+                "fcu": [],
+                "exhaust_fans": []
+            },
+            "zones": []
+        }
+    }
+}
