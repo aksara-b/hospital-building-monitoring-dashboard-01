@@ -28,8 +28,9 @@ function App() {
 
   const weather = useMemo(() => getWeatherData(activeHospital.city), [activeHospital]);
 
-  const handleLogin = (selectedRole: string) => {
+  const handleLogin = (selectedRole: string, selectedHospital: Hospital) => {
     setRole(selectedRole);
+    setActiveHospital(selectedHospital);
     setIsLoggedIn(true);
   };
 

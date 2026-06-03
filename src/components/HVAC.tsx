@@ -34,17 +34,17 @@ export function HVAC({ hospital }: HVACProps) {
         />
         <KPICard 
           title="Total Cooling Output" 
-          value={Math.round(totalCoolingLoad).toLocaleString()} 
+          value={hospital.id === 'arroyyan' ? '210' : Math.round(totalCoolingLoad).toLocaleString()} 
           unit="TR" 
           trend={-1.2}
-          subtitle={`Peak today: ${hospital.id === 'bekasi' ? '2,240' : '1,850'} TR`}
+          subtitle={`Peak today: ${hospital.id === 'bekasi' ? '2,240' : hospital.id === 'arroyyan' ? '280' : hospital.id === 'surabaya' ? '3,100' : '1,850'} TR`}
         />
         <KPICard 
           title="Total Power Demand" 
-          value={Math.round(totalPower).toLocaleString()} 
+          value={hospital.id === 'arroyyan' ? '165' : Math.round(totalPower).toLocaleString()} 
           unit="kW" 
           trend={-3.5}
-          subtitle={`of capacity (${hospital.id === 'bekasi' ? '2,000' : '1,500'} kW)`}
+          subtitle={`of capacity (${hospital.id === 'bekasi' ? '2,000' : hospital.id === 'arroyyan' ? '350' : hospital.id === 'surabaya' ? '3,500' : '1,500'} kW)`}
         />
         <div className="bg-white border border-rose-100 rounded-xl p-5 flex flex-col justify-between group overflow-hidden relative shadow-sm">
           <div className="absolute inset-0 bg-rose-500/5 transition-opacity group-hover:bg-rose-500/10" />
@@ -52,10 +52,10 @@ export function HVAC({ hospital }: HVACProps) {
             <AlertTriangle className="w-4 h-4 text-rose-500" /> Active Alarms
           </h3>
           <div className="flex items-baseline gap-2 relative z-10">
-            <span className="text-4xl font-black text-slate-900 tracking-tight">{hospital.id === 'bekasi' ? '3' : '2'}</span>
+            <span className="text-4xl font-black text-slate-900 tracking-tight">{hospital.id === 'bekasi' ? '3' : hospital.id === 'arroyyan' ? '1' : hospital.id === 'surabaya' ? '5' : '2'}</span>
           </div>
           <div className="text-[10px] text-rose-600 font-bold relative z-10 mt-3 uppercase tracking-wider">
-            {hospital.id === 'bekasi' ? '2 High Priority (CH-2)' : '1 High Priority (AHU-L5-1)'}
+            {hospital.id === 'bekasi' ? '2 High Priority (CH-2)' : hospital.id === 'arroyyan' ? '1 High Priority (AC Filter R.A3)' : hospital.id === 'surabaya' ? '3 High Priority (CH-3)' : '1 High Priority (AHU-L5-1)'}
           </div>
         </div>
       </div>
@@ -176,7 +176,11 @@ export function HVAC({ hospital }: HVACProps) {
                       </tr>
                     </thead>
                     <tbody>
-                      {ahuSummary.slice(0, hospital.id === 'bekasi' ? 12 : 9).map((ahu, i) => (
+                      {(hospital.id === 'arroyyan' ? [
+                        { floor: 'L3', total: 3, online: 2, offline: 0, warning: 1, avgTemp: 25.4 },
+                        { floor: 'L2', total: 2, online: 2, offline: 0, warning: 1, avgTemp: 22.1 },
+                        { floor: 'L1', total: 1, online: 1, offline: 0, warning: 0, avgTemp: 27.8 },
+                      ] : ahuSummary.slice(0, hospital.id === 'bekasi' ? 12 : hospital.id === 'surabaya' ? 15 : 9)).map((ahu, i) => (
                         <tr key={ahu.floor} className={clsx("border-b border-slate-50 hover:bg-slate-50/50 transition-colors", i % 2 === 0 ? "bg-slate-50/20" : "")}>
                           <td className="px-5 py-3.5 font-bold text-slate-800">{ahu.floor}</td>
                           <td className="px-5 py-3.5 text-center">

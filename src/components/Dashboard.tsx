@@ -32,7 +32,7 @@ export function Dashboard({ role, hospital }: DashboardProps) {
         </div>
 
         <div className="grid grid-cols-4 gap-4">
-          <KPICard title="Bed Occupancy (BOR)" value={kpis.bor.toString()} unit="%" trend={4.2} subtitle={`${Math.round(kpis.bor * 1.4)} of ${Math.round(141 * (hospital.id === 'bekasi' ? 1.5 : 1))} Beds Occupied`} />
+          <KPICard title="Bed Occupancy (BOR)" value={kpis.bor.toString()} unit="%" trend={4.2} subtitle={hospital.id === 'arroyyan' ? `${Math.round(kpis.bor * 1.5)} of 150 Bed Terisi` : `${Math.round(kpis.bor * 1.4)} of ${Math.round(141 * (hospital.id === 'bekasi' ? 1.5 : hospital.id === 'surabaya' ? 2.5 : 1))} Beds Occupied`} />
           <KPICard title="Energy Cost (Est.)" value={kpis.energyCost} unit="" trend={-1.8} subtitle={`Efficiency Savings: ${kpis.savings}`} />
           <KPICard title="Sustainability Score" value={kpis.esgScore} unit="" trend={2.1} subtitle="Top 5% of Regional Hospitals" />
           <KPICard title="Critical Alerts" value={kpis.alerts.toString()} unit="" trend={0} subtitle={kpis.alerts > 0 ? `${kpis.alerts} active issues` : "No active Life Safety issues"} />
@@ -97,7 +97,7 @@ export function Dashboard({ role, hospital }: DashboardProps) {
         </div> */}
 
         <div className="grid grid-cols-4 gap-4">
-          <KPICard title="EUI Intensity" value={hospital.id === 'bekasi' ? "158" : "142"} unit="kWh/m²" trend={-0.4} subtitle="Target: 135 kWh/m²" />
+          <KPICard title="EUI Intensity" value={hospital.id === 'bekasi' ? "158" : hospital.id === 'arroyyan' ? "122" : hospital.id === 'surabaya' ? "171" : "142"} unit="kWh/m²" trend={-0.4} subtitle="Target: 135 kWh/m²" />
           <KPICard title="PM Completion" value="92.1" unit="%" trend={8.2} subtitle="11 pending work orders" />
           <KPICard title="Avg Patient Satisfaction" value="4.6" unit="/5" trend={1.2} subtitle="Facility quality score" />
           <KPICard title="Staff Allocation" value="94" unit="%" trend={-2.1} subtitle="Critical zones fully staffed" />
@@ -161,17 +161,17 @@ export function Dashboard({ role, hospital }: DashboardProps) {
 
       {/* Top Row KPIs */}
       <div className="grid grid-cols-6 gap-4">
-        <KPICard title="Chiller Load" value={hospital.id === 'bekasi' ? "76" : "68"} unit="%" subtitle="1,245 of 1,840 TR" />
-        <KPICard title="HVAC Power" value={hospital.id === 'bekasi' ? "1,240" : "1,072"} unit="kW" trend={-2.4} />
+        <KPICard title="Chiller Load" value={hospital.id === 'bekasi' ? "76" : hospital.id === 'arroyyan' ? "58" : hospital.id === 'surabaya' ? "82" : "68"} unit="%" subtitle={hospital.id === 'arroyyan' ? '3 of 3 AHU Active' : '1,245 of 1,840 TR'} />
+        <KPICard title="HVAC Power" value={hospital.id === 'bekasi' ? "1,240" : hospital.id === 'arroyyan' ? "165" : hospital.id === 'surabaya' ? "1,820" : "1,072"} unit="kW" trend={-2.4} />
         <KPICard title="Avg COP" value="5.21" trend={8.4} />
         <KPICard title="Avg Temp" value="23.4" unit="°C" trend={-0.6} />
         <KPICard title="Total Airflow" value="124k" unit="CMH" />
         <div className="bg-white border border-slate-200/60 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Active Faults</h3>
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-slate-900 tracking-tight">{hospital.id === 'bekasi' ? "12" : "8"}</span>
+            <span className="text-3xl font-bold text-slate-900 tracking-tight">{hospital.id === 'bekasi' ? "12" : hospital.id === 'arroyyan' ? "4" : hospital.id === 'surabaya' ? "15" : "8"}</span>
             <div className="ml-auto flex items-center gap-1 text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full uppercase">
-              <AlertTriangle className="w-3 h-3" /> {hospital.id === 'bekasi' ? "5" : "3"} CRITICAL
+              <AlertTriangle className="w-3 h-3" /> {hospital.id === 'bekasi' ? "5" : hospital.id === 'arroyyan' ? "2" : hospital.id === 'surabaya' ? "6" : "3"} CRITICAL
             </div>
           </div>
           <div className="flex items-end gap-1.5 h-8 mt-4">
@@ -188,7 +188,7 @@ export function Dashboard({ role, hospital }: DashboardProps) {
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-3">
               {[
-                { label: 'CHW Supply / Return', value: hospital.id === 'bekasi' ? '6.5°C / 11.8°C' : '6.8°C / 12.1°C' },
+                { label: 'CHW Supply / Return', value: hospital.id === 'bekasi' ? '6.5°C / 11.8°C' : hospital.id === 'arroyyan' ? '7.2°C / 12.5°C' : '6.8°C / 12.1°C' },
                 { label: 'CW Supply / Return', value: '30.2°C / 35.4°C' },
                 { label: 'Plant Efficiency', value: '0.62 kW/TR' },
               ].map(item => (

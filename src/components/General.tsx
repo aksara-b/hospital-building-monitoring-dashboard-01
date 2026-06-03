@@ -83,7 +83,7 @@ export function General({ hospital }: GeneralProps) {
                   <Phone className="w-4 h-4 text-slate-400" /> +62 812-3456-7890
                 </div>
                 <div className="flex items-center gap-4 text-sm text-slate-500 font-medium hover:text-slate-900 transition-colors cursor-pointer">
-                  <Mail className="w-4 h-4 text-slate-400" /> {hospital.id === 'cipadung' ? 'facility@rsx.com' : 'facility@rsy.com'}
+                  <Mail className="w-4 h-4 text-slate-400" /> {hospital.id === 'arroyyan' ? 'fasilitas@arroyyan.co.id' : hospital.id === 'cipadung' ? 'facility@rsx.com' : hospital.id === 'bekasi' ? 'facility@rsy.com' : 'facility@rsz.co.id'}
                 </div>
               </div>
             </div>
